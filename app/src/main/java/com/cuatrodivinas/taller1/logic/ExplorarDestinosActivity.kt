@@ -6,34 +6,33 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.cuatrodivinas.taller1.MainActivity
 import com.cuatrodivinas.taller1.R
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 import java.io.InputStream
-import java.io.Serializable
 
-class ExplorarDestinos : AppCompatActivity() {
+class ExplorarDestinosActivity : AppCompatActivity() {
     private lateinit var detalles:ListView
     private lateinit var destinos:JSONArray
     private lateinit var destinosNombre:MutableList<String>
+    private lateinit var destinosIndex:MutableList<Int>
     private lateinit var categoria:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_explorar_destinos)
+
         destinosNombre = mutableListOf()
+        destinosIndex = mutableListOf()
         categoria = intent.getStringExtra("categoria")!!
+
         inicializarElementos()
         eventoDetalles()
     }
 
-    fun inicializarElementos(){
+    private fun inicializarElementos(){
         detalles = findViewById(R.id.destinosListView)
         //ListView
         val json = JSONObject(cargarJson())
@@ -43,6 +42,7 @@ class ExplorarDestinos : AppCompatActivity() {
             if(categoria.equals("todos", true) ||
                 categoria.equals(jsonObject.getString("categoria"), true)){
                 destinosNombre.add(jsonObject.getString("nombre"))
+                destinosIndex.add(i)
             }
         }
 
@@ -52,7 +52,7 @@ class ExplorarDestinos : AppCompatActivity() {
         detalles.adapter = adaptador
     }
 
-    fun cargarJson(): String?{
+    private fun cargarJson(): String?{
         var json: String? = null
         try {
             val isStream: InputStream = assets.open("destinos.json")
@@ -68,15 +68,21 @@ class ExplorarDestinos : AppCompatActivity() {
         return json
     }
 
-    fun eventoDetalles(){
-        detalles.setOnItemClickListener(object : AdapterView.OnItemClickListener {
+    private fun eventoDetalles(){
+        detalles.onItemClickListener = object : AdapterView.OnItemClickListener {
             override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val intent = Intent(this@ExplorarDestinos, MainActivity::class.java)
+                val intent = Intent(this@ExplorarDestinosActivity, DetailActivity::class.java)
                 val bundle = Bundle()
-                bundle.putString("destinos", destinos.get(position).toString())
+                val destinoSelected = destinos.getJSONObject(destinosIndex[position])
+                bundle.putInt("id", destinoSelected.getInt("id"))
+                bundle.putString("nombre", destinoSelected.getString("nombre"))
+                bundle.putString("pais", destinoSelected.getString("pais"))
+                bundle.putString("categoria", destinoSelected.getString("categoria"))
+                bundle.putString("plan", destinoSelected.getString("plan"))
+                bundle.putInt("precio", destinoSelected.getInt("precio"))
                 intent.putExtra("bundle", bundle)
                 startActivity(intent)
             }
-        })
+        }
     }
 }

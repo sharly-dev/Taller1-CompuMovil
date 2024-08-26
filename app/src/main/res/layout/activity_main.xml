@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
-    tools:context=".MainActivity">
+    tools:context=".logic.MainActivity">
 
     <Spinner
         android:id="@+id/categorias_viaje"
@@ -24,7 +24,7 @@
         android:id="@+id/explorar_destinos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/explorar_destinos"
+        android:text="@string/explorar_destinos_title"
         android:layout_marginTop="10dp"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
         android:id="@+id/favoritos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/favoritos"
+        android:text="@string/favoritos_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/explorar_destinos" />
@@ -44,7 +44,7 @@
         android:id="@+id/recomendaciones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/recomendaciones"
+        android:text="@string/recomendaciones_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/favoritos" />

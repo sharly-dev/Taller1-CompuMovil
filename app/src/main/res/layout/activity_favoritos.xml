@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".logic.ExplorarDestinosActivity">
+    tools:context=".logic.FavoritosActivity">
     <TextView
         android:id="@+id/tituloTxt"
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         android:padding="10dp"
         android:gravity="center"
         android:layout_alignParentTop="true"
-        android:text="@string/explorar_destinos_title"
+        android:text="@string/favoritos_title"
         />
 
     <ListView

@@ -10,14 +10,15 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/primaryColor"
         tools:ignore="MissingConstraints">
 
-        <ImageView
+        <!--<ImageView
+            android:id="@+id/boton_atras"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/toolbar"
-            android:src="@drawable/baseline_arrow_back_24"/>
+            android:src="@drawable/baseline_arrow_back_24"/>-->
 
         <TextView
             android:layout_width="wrap_content"
@@ -52,59 +53,55 @@
             />
 
         <TextView
-            android:id="@+id/city"
+            android:id="@+id/nombre_destino"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ciudad"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/airplain"
-            app:layout_constraintBottom_toTopOf="@+id/country"
-            android:layout_marginBottom="5dp"/>
+            app:layout_constraintBottom_toTopOf="@+id/pais_destino"
+            android:layout_marginBottom="5dp"
+            android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/country"
+            android:id="@+id/pais_destino"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/pais"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/city"
-            app:layout_constraintBottom_toTopOf="@+id/category"
+            app:layout_constraintTop_toBottomOf="@+id/nombre_destino"
+            app:layout_constraintBottom_toTopOf="@+id/categoria_destino"
             android:layout_marginBottom="5dp"/>
 
         <TextView
-            android:id="@+id/category"
+            android:id="@+id/categoria_destino"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/categoria"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/country"
-            app:layout_constraintBottom_toTopOf="@+id/plan"
+            app:layout_constraintTop_toBottomOf="@+id/pais_destino"
+            app:layout_constraintBottom_toTopOf="@+id/plan_destino"
             android:layout_marginBottom="5dp"/>
         <TextView
-            android:id="@+id/plan"
+            android:id="@+id/plan_destino"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/plan"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/category"
-            app:layout_constraintBottom_toTopOf="@+id/price"
+            app:layout_constraintTop_toBottomOf="@+id/categoria_destino"
+            app:layout_constraintBottom_toTopOf="@+id/precio_destino"
             android:layout_marginBottom="5dp"
             />
 
         <TextView
-            android:id="@+id/price"
+            android:id="@+id/precio_destino"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/precio"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/plan"
+            app:layout_constraintTop_toBottomOf="@+id/plan_destino"
             android:layout_marginBottom="16dp"/>
 
 
@@ -112,10 +109,10 @@
 
 
     <Button
-        android:id="@+id/button_favorites"
+        android:id="@+id/boton_add_favoritos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/primaryColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
