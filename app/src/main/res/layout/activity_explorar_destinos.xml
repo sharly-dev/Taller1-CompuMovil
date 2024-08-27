@@ -17,7 +17,7 @@
         android:padding="10dp"
         android:gravity="center"
         android:layout_alignParentTop="true"
-        android:text="@string/explorar_destinos_texto"
+        android:text="@string/explorar_destinos"
         />
     <ListView
         android:id="@+id/destinosListView"
