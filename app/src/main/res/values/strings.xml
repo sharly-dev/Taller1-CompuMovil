@@ -56,4 +56,5 @@
     <string name="explorar_destinos_title">Explorar Destinos</string>
     <string name="favoritos_title">Favoritos</string>
     <string name="recomendaciones_title">Recomendaciones</string>
+    <string name="menu_principal">Menu principal</string>
 </resources>

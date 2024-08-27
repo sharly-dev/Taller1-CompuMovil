@@ -11,26 +11,34 @@ import com.cuatrodivinas.taller1.data.Data.Companion.favoritos
 import com.cuatrodivinas.taller1.data.Destino
 
 class DetailActivity : AppCompatActivity() {
-    private lateinit var destino:Bundle
-    private var textoNombre: TextView = findViewById(R.id.nombre_destino)
-    private var textoPais: TextView = findViewById(R.id.pais_destino)
-    private var textoCategoria: TextView = findViewById(R.id.categoria_destino)
-    private var textoPlan: TextView = findViewById(R.id.plan_destino)
-    private var textoPrecio: TextView = findViewById(R.id.precio_destino)
-    private var botonAddFavoritos: Button = findViewById(R.id.boton_add_favoritos)
+    private lateinit var destino: Bundle
+    private lateinit var textoNombre: TextView
+    private lateinit var textoPais: TextView
+    private lateinit var textoCategoria: TextView
+    private lateinit var textoPlan: TextView
+    private lateinit var textoPrecio: TextView
+    private lateinit var botonAddFavoritos: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
+        // Initialize views after setting the content view
+        textoNombre = findViewById(R.id.nombre_destino)
+        textoPais = findViewById(R.id.pais_destino)
+        textoCategoria = findViewById(R.id.categoria_destino)
+        textoPlan = findViewById(R.id.plan_destino)
+        textoPrecio = findViewById(R.id.precio_destino)
+        botonAddFavoritos = findViewById(R.id.boton_add_favoritos)
+
         // Si viene de Explorar Destinos (es decir, estamos en Detalles)
-        if(intent.getBundleExtra("bundle") == null) {
+        if (intent.getBundleExtra("bundle") == null) {
             setDestino()
             botonAddFavoritos.visibility = View.GONE
         } else {    // Si viene del Menu, del MainActivity (es decir, estamos en Recomendaciones)
             destino = intent.getBundleExtra("bundle")!!
-            for (i in 0 until favoritos.size){
-                if(favoritos[i].getId() == destino.getInt("id")) {
+            for (i in 0 until favoritos.size) {
+                if (favoritos[i].getId() == destino.getInt("id")) {
                     botonAddFavoritos.visibility = View.GONE
                 }
             }
@@ -39,14 +47,14 @@ class DetailActivity : AppCompatActivity() {
         inicializarElementos()
     }
 
-    private fun setDestino(){
+    private fun setDestino() {
         // Iterar la lista de favoritos para ver la categoria mas repetida
         val categorias = mutableMapOf<String, Int>()
-        for (i in 0 until favoritos.size){
+        for (i in 0 until favoritos.size) {
             val categoria = favoritos[i].getCategoria()
-            if(categorias.containsKey(categoria)){
+            if (categorias.containsKey(categoria)) {
                 categorias[categoria] = categorias[categoria]!! + 1
-            }else{
+            } else {
                 categorias[categoria] = 1
             }
         }
@@ -54,16 +62,16 @@ class DetailActivity : AppCompatActivity() {
         // Obtener la categoria mas repetida
         var max = 0
         var categoriaMasRepetida = ""
-        for (entry in categorias){
-            if(entry.value > max){
+        for (entry in categorias) {
+            if (entry.value > max) {
                 max = entry.value
                 categoriaMasRepetida = entry.key
             }
         }
 
         val posiblesDestinos = mutableListOf<Bundle>()
-        for (i in 0 until favoritos.size){
-            if(favoritos[i].getCategoria() == categoriaMasRepetida){
+        for (i in 0 until favoritos.size) {
+            if (favoritos[i].getCategoria() == categoriaMasRepetida) {
                 val bundle = Bundle()
                 bundle.putInt("id", favoritos[i].getId())
                 bundle.putString("nombre", favoritos[i].getNombre())
@@ -81,12 +89,12 @@ class DetailActivity : AppCompatActivity() {
         this.destino = posiblesDestinos[random]
     }
 
-    private fun inicializarElementos(){
-        val nombre:String = destino.getString("nombre").toString()
-        val pais:String = destino.getString("pais").toString()
-        val categoria:String = destino.getString("categoria").toString()
-        val plan:String = destino.getString("plan").toString()
-        val precio:Int = destino.getInt("precio")
+    private fun inicializarElementos() {
+        val nombre: String = destino.getString("nombre").toString()
+        val pais: String = destino.getString("pais").toString()
+        val categoria: String = destino.getString("categoria").toString()
+        val plan: String = destino.getString("plan").toString()
+        val precio: Int = destino.getInt("precio")
 
         textoNombre.text = nombre
         textoPais.text = pais
@@ -95,7 +103,7 @@ class DetailActivity : AppCompatActivity() {
         val precioStr = "USD $precio"
         textoPrecio.text = precioStr
 
-        if(botonAddFavoritos.visibility != View.GONE){
+        if (botonAddFavoritos.visibility != View.GONE) {
             botonAddFavoritos.setOnClickListener {
                 val destiny = Destino(destino.getInt("id"), nombre, pais, categoria, plan, precio)
                 favoritos.add(destiny)

@@ -6,25 +6,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".logic.FavoritosActivity">
-    <TextView
-        android:id="@+id/tituloTxt"
+    <Toolbar
+        android:id="@+id/toolbar4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
-        android:gravity="center"
-        android:layout_alignParentTop="true"
-        android:text="@string/favoritos_title"
-        />
+        android:layout_height="50dp"
+        android:background="@color/primaryColor"
+        tools:ignore="MissingConstraints">
+
+        <!--<ImageView
+            android:id="@+id/boton_atras"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/toolbar"
+            android:src="@drawable/baseline_arrow_back_24"/>-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/favoritos_title"
+            android:layout_gravity="center"
+            android:textSize="24sp"
+            android:textColor="@color/black"/>
+
+    </Toolbar>
 
     <ListView
         android:id="@+id/destinosListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_alignTop="@+id/tituloTxt"
+        android:layout_alignTop="@+id/toolbar4"
         android:padding="20dp"
         android:layout_marginTop="60dp"
         android:layout_marginBottom="60dp"/>
